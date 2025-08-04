@@ -14,6 +14,7 @@ public class CardSelectArrowMoved : MonoBehaviour {
 
     List<Vector2> originalPos = new List<Vector2>();
 
+    /*==========開始時に起動==========*/
     private void Start() {
 
         for (int i = 0; i < arrowPos.Count; i++) {
@@ -21,19 +22,23 @@ public class CardSelectArrowMoved : MonoBehaviour {
         }
     }
 
+    /*===========起動===========*/
     public void StartMyProcess(RectTransform targetPos) {
 
         isProcess = true;
         arrowGroup.anchoredPosition = targetPos.anchoredPosition;
 
+        //矢印をforで起動して同時に動かしてる
         for (int i = 0; i < arrowPos.Count; i++) {
             arrowObject[i].enabled = true;
             StartCoroutine(FloatLoop(arrowPos[i], originalPos[i]));
         }
     }
 
+    /*===========停止============*/
     public void StopMyProcess() {
 
+        //矢印を複数forで停止する
         isProcess = false;
         for (int i = 0; i < arrowPos.Count; i++) {
             arrowObject[i].enabled = false;

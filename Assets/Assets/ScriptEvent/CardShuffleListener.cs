@@ -5,6 +5,7 @@ using System;
 
 public class CardShuffleListener : MonoBehaviour {
 
+    //このイベントによって動かしたい挙動をSerializedFieldに登録する
     [SerializeField] private CardShowTableController showTable;
 
     IEnumerator RegisterListener() {
@@ -22,6 +23,7 @@ public class CardShuffleListener : MonoBehaviour {
         CardShuffleEvent.Instance.OnDeckShuffled -= HandleDrawnCard;
     }
 
+    //イベントが発火した時に、この中にある挙動が開始される
     void HandleDrawnCard() {
 
         showTable.ShowTableCard();

@@ -26,6 +26,7 @@ public class CardShowTableController : MonoBehaviour {
         //ŽèŽD‚Ì•`ŽÊ
         for (int i = 0; i < 6; i++) {
             cardPointGroup[i].sprite = tableCard[i].CardImage;
+            cardPointGroup[i].GetComponent<CardAttachedCardData>().cardData = tableCard[i];
         }
 
         deckData.Deck = deck;
