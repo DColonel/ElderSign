@@ -1,13 +1,13 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting;
 
-/*=========カードをPopUpする際に、手札一覧を画面下に移動させるためのScript=========*/
-public class ClickedMoveCardController : MonoBehaviour {
+public class HandCardsPopUpCardController : MonoBehaviour {
 
     [SerializeField] RectTransform cardGroup;
 
-    float duration = 0.3f;
+    float duration = 0.6f;
     float elapsed = 0f;
     Vector2 startPos;
     Vector2 endPos;
@@ -15,17 +15,20 @@ public class ClickedMoveCardController : MonoBehaviour {
     private void Start() {
 
         startPos = cardGroup.anchoredPosition;
-        endPos = startPos + new Vector2(0, -2000f);
+        endPos = new Vector2(0, 0);
     }
 
     public void StartMyProcess() {
 
+        elapsed = 0f;
+        startPos = cardGroup.anchoredPosition;
         StartCoroutine(CardGroupMove());
     }
 
     private IEnumerator CardGroupMove() {
 
         while (elapsed < duration) {
+
             float t = elapsed / duration;
             cardGroup.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
             elapsed += Time.deltaTime;
@@ -35,4 +38,3 @@ public class ClickedMoveCardController : MonoBehaviour {
         cardGroup.anchoredPosition = endPos;
     }
 }
-

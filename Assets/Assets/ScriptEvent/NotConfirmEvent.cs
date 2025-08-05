@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-/*==========起動直後にシャッフルのために起動=========*/
-public class CardShuffleEvent : MonoBehaviour {
-
-    public static CardShuffleEvent Instance;
+/*=========プレイするカードの確認時、いいえを選んだ時に手札の表示やPopUpの削除をするためのEvent=========*/
+public class NotConfirmEvent : MonoBehaviour
+{
+    public static NotConfirmEvent Instance;
 
     private void Awake() {
         if (Instance != null && Instance != this) {
@@ -18,11 +17,11 @@ public class CardShuffleEvent : MonoBehaviour {
     }
 
     /*==========イベント定義===========*/
-    public event Action OnDeckShuffled;
+    public event Action NotConfirmed;
 
     /*==========イベント発火===========*/
-    public void TriggerDeckShuffled() {
+    public void TriggerNotConfirmed() {
 
-        OnDeckShuffled.Invoke();
+        NotConfirmed?.Invoke();
     }
 }

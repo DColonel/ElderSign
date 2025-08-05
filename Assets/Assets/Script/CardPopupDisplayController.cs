@@ -40,9 +40,6 @@ public class CardPopupDisplayController : MonoBehaviour {
         elapsed = 0f;
         StartCoroutine(CardGroupMove());
 
-        //mouseOnCardController内の継承のためのCardDataを削除する
-        mouseOnCardController.CardDataClear();
-
         confirmCardPlay.SetActive(true);
     }
 

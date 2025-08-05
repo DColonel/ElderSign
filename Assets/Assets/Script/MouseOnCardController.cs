@@ -10,7 +10,7 @@ public class MouseOnCardController : MonoBehaviour {
 
     [SerializeField] List<RectTransform> Card;
     [SerializeField] CardSelectArrowMoved arrowMoved;
-    [SerializeField] ClickedMoveCardController clickedMoveCardController;
+    [SerializeField] HandCardsHideCardController handCardsHideCardController;
 
     [SerializeField] private GraphicRaycaster raycaster;
     [SerializeField] private EventSystem eventSystem;
@@ -34,7 +34,7 @@ public class MouseOnCardController : MonoBehaviour {
 
         //カードを下に移動動かすcontrollerを起動し、クリックしたカード情報を保存する
         if (mouseOnCard && Input.GetMouseButtonDown(0)) {
-            clickedMoveCardController.StartMyProcess();
+            handCardsHideCardController.StartMyProcess();
 
             //PointerEventDataを作成
             PointerEventData pointerData = new PointerEventData(eventSystem) {
@@ -74,11 +74,5 @@ public class MouseOnCardController : MonoBehaviour {
         }
 
         return false;
-    }
-
-    /*============処理終了後CardDataを消去する用=============*/
-    public void CardDataClear() {
-
-        card = null;
     }
 }
