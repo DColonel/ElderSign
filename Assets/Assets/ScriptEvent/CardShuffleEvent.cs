@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,10 +15,10 @@ public class CardShuffleEvent : MonoBehaviour {
         Instance = this;
     }
 
-    /*==========ƒCƒxƒ“ƒg’è‹`===========*/
+    /*==========ã‚¤ãƒ™ãƒ³ãƒˆå®šç¾©===========*/
     public event Action OnDeckShuffled;
 
-    /*==========ƒCƒxƒ“ƒg”­‰Î===========*/
+    /*==========ã‚¤ãƒ™ãƒ³ãƒˆç™ºç«===========*/
     public void TriggerDeckShuffled() {
 
         OnDeckShuffled.Invoke();

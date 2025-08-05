@@ -1,10 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/*==========ã‚«ãƒ¼ãƒ‰ã®çœŸä¸Šã«ãƒã‚¦ã‚¹ãŒå­˜åœ¨ã™ã‚‹ã¨ãã€ã‚¯ãƒªãƒƒã‚¯ã—ãŸæ™‚ãã‚Œãã‚Œã®å‡¦ç†============*/
 public class MouseOnCardController : MonoBehaviour {
 
     [SerializeField] List<RectTransform> Card;
@@ -20,27 +21,27 @@ public class MouseOnCardController : MonoBehaviour {
 
     void Update() {
 
-        //CardSelectArrowMoved‚ğ‹N“®‚·‚é
+        //CardSelectArrowMovedã‚’èµ·å‹•ã™ã‚‹
         if (MouseOnAnyCard()) {
             arrowMoved.StartMyProcess(targetPos);
             mouseOnCard = true;
 
-            //CardSelectArrowMoved‚ğ’â~‚·‚é
+            //CardSelectArrowMovedã‚’åœæ­¢ã™ã‚‹
         } else {
             arrowMoved.StopMyProcess();
             mouseOnCard = false;
         }
 
-        //ƒJ[ƒh‚ğ‰º‚ÉˆÚ“®“®‚©‚·controller‚ğ‹N“®‚µAƒNƒŠƒbƒN‚µ‚½ƒJ[ƒhî•ñ‚ğ•Û‘¶‚·‚é
+        //ã‚«ãƒ¼ãƒ‰ã‚’ä¸‹ã«ç§»å‹•å‹•ã‹ã™controllerã‚’èµ·å‹•ã—ã€ã‚¯ãƒªãƒƒã‚¯ã—ãŸã‚«ãƒ¼ãƒ‰æƒ…å ±ã‚’ä¿å­˜ã™ã‚‹
         if (mouseOnCard && Input.GetMouseButtonDown(0)) {
             clickedMoveCardController.StartMyProcess();
 
-            //PointerEventData‚ğì¬
+            //PointerEventDataã‚’ä½œæˆ
             PointerEventData pointerData = new PointerEventData(eventSystem) {
                 position = Input.mousePosition
             };
 
-            //UIã‚ÌƒqƒbƒgŒ‹‰Ê‚ğŠi”[
+            //UIä¸Šã®ãƒ’ãƒƒãƒˆçµæœã‚’æ ¼ç´
             List<RaycastResult> results = new List<RaycastResult>();
             raycaster.Raycast(pointerData, results);
 
@@ -48,7 +49,7 @@ public class MouseOnCardController : MonoBehaviour {
 
                 GameObject hitObject = results[i].gameObject;
 
-                //ƒqƒbƒg‚µ‚½ƒIƒuƒWƒFƒNƒg‚Ì’†‚ÉCardAttachedCardData‚ª‚ ‚ê‚ÎE‚¤
+                //ãƒ’ãƒƒãƒˆã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä¸­ã«CardAttachedCardDataãŒã‚ã‚Œã°æ‹¾ã†
                 CardAttachedCardData attachedObject = hitObject.GetComponent<CardAttachedCardData>();
                 if (attachedObject != null && attachedObject.cardData != null) {
                     card = attachedObject.cardData;
@@ -56,7 +57,7 @@ public class MouseOnCardController : MonoBehaviour {
                 }
             }
 
-            //ƒJ[ƒhƒf[ƒ^æ“¾Œã‚ÉƒCƒxƒ“ƒg”­‰Î
+            //ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿å–å¾—å¾Œã«ã‚¤ãƒ™ãƒ³ãƒˆç™ºç«
             CardPopupDisplayEvent.Instance.TriggerCardPopupDisplay();
         }
     }
@@ -75,7 +76,7 @@ public class MouseOnCardController : MonoBehaviour {
         return false;
     }
 
-    /*============ˆ—I—¹ŒãCardData‚ğÁ‹‚·‚é—p=============*/
+    /*============å‡¦ç†çµ‚äº†å¾ŒCardDataã‚’æ¶ˆå»ã™ã‚‹ç”¨=============*/
     public void CardDataClear() {
 
         card = null;

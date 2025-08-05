@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 
 public class CardShuffleListener : MonoBehaviour {
 
-    //‚±‚ÌƒCƒxƒ“ƒg‚É‚æ‚Á‚Ä“®‚©‚µ‚½‚¢‹““®‚ğSerializedField‚É“o˜^‚·‚é
+    //ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã«ã‚ˆã£ã¦å‹•ã‹ã—ãŸã„æŒ™å‹•ã‚’SerializedFieldã«ç™»éŒ²ã™ã‚‹
     [SerializeField] private CardShowTableController showTable;
 
     IEnumerator RegisterListener() {
@@ -23,7 +23,7 @@ public class CardShuffleListener : MonoBehaviour {
         CardShuffleEvent.Instance.OnDeckShuffled -= HandleDrawnCard;
     }
 
-    //ƒCƒxƒ“ƒg‚ª”­‰Î‚µ‚½‚ÉA‚±‚Ì’†‚É‚ ‚é‹““®‚ªŠJn‚³‚ê‚é
+    //ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºç«ã—ãŸæ™‚ã«ã€ã“ã®ä¸­ã«ã‚ã‚‹æŒ™å‹•ãŒé–‹å§‹ã•ã‚Œã‚‹
     void HandleDrawnCard() {
 
         showTable.ShowTableCard();

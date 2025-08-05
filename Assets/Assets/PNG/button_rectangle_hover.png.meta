@@ -140,7 +140,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      button_rectangle_hover_0: 3604133309530195374
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

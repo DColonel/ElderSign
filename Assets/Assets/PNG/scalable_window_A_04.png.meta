@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ded3baf2fc6e86e4481f70cebec08ac5
+guid: d5fff072f00fe684fad78014f281d7bc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5932777057695228084
-    second: arrow_down_hover 1_0
+      213: -1462361933413953918
+    second: scalable_window_A_04_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arrow_down_hover 1_0
+      name: scalable_window_A_04_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 90
-        height: 74
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4b0e28ffc45755250800000000000000
-      internalID: 5932777057695228084
+      spriteID: 28ecec9c195a4bbe0800000000000000
+      internalID: -1462361933413953918
       vertices: []
       indices: 
       edges: []
@@ -140,7 +140,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scalable_window_A_04_0: -1462361933413953918
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

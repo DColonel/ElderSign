@@ -1,8 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*==========画面に手札を描写するscript============*/
 public class CardShowTableController : MonoBehaviour {
 
     /*===============Core==============*/
@@ -11,19 +12,19 @@ public class CardShowTableController : MonoBehaviour {
     List<Card> deck;
     List<Card> tableCard;
 
-    /*==============��D�̍쐬�ƕ`��==============*/
+    /*==============手札の作成と描写==============*/
     public void ShowTableCard() {
 
         deck = deckData.Deck;
         tableCard = deckData.TableCard;
 
-        //��D�̍쐬
+        //手札の作成
         for (int i = tableCard.Count; i < 6; i++) {
             tableCard.Add(deck[0]);
             deck.RemoveAt(0);
         }
 
-        //��D�̕`��
+        //手札の描写
         for (int i = 0; i < 6; i++) {
             cardPointGroup[i].sprite = tableCard[i].CardImage;
             cardPointGroup[i].GetComponent<CardAttachedCardData>().cardData = tableCard[i];

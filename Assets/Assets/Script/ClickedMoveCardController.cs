@@ -1,7 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*=========カードをPopUpする際に、手札一覧を画面下に移動させるためのScript=========*/
 public class ClickedMoveCardController : MonoBehaviour {
 
     [SerializeField] RectTransform cardGroup;

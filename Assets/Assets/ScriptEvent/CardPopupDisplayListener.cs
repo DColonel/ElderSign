@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CardPopupDisplayListener : MonoBehaviour {
 
-    //‚±‚ÌƒCƒxƒ“ƒg‚É‚æ‚Á‚Ä“®‚©‚µ‚½‚¢‹““®‚ğSerializedField‚É“o˜^‚·‚é
+    //ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã«ã‚ˆã£ã¦å‹•ã‹ã—ãŸã„æŒ™å‹•ã‚’SerializedFieldã«ç™»éŒ²ã™ã‚‹
     [SerializeField] CardPopupDisplayController cardPopupDisplayController;
 
     void OnEnable() {
@@ -15,7 +15,7 @@ public class CardPopupDisplayListener : MonoBehaviour {
         CardPopupDisplayEvent.Instance.CardPopupDisplay -= HandlePopupCard;
     }
 
-    //ƒCƒxƒ“ƒg‚ª”­‰Î‚µ‚½‚ÉA‚±‚Ì’†‚É‚ ‚é‹““®‚ªŠJn‚³‚ê‚é
+    //ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºç«ã—ãŸæ™‚ã«ã€ã“ã®ä¸­ã«ã‚ã‚‹æŒ™å‹•ãŒé–‹å§‹ã•ã‚Œã‚‹
     void HandlePopupCard() {
 
         cardPopupDisplayController.CardPopupDisplay();

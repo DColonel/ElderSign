@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 15e26e6a9e46c404a9242e0d3bef09f4
+guid: b9262950da2424345924cf0d153d28a5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3944535641616211909
-    second: scroll_tab_active_0
+      213: -2793670011275668685
+    second: wood-grain-texture3_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: scroll_tab_active_0
+      name: wood-grain-texture3_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 20
-        height: 80
+        width: 1920
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5cfd66a544ecdb630800000000000000
-      internalID: 3944535641616211909
+      spriteID: 333904e1de3ea39d0800000000000000
+      internalID: -2793670011275668685
       vertices: []
       indices: 
       edges: []
@@ -140,7 +140,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      wood-grain-texture3_0: -2793670011275668685
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

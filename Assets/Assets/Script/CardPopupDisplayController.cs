@@ -1,8 +1,9 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*==============ã‚¯ãƒªãƒƒã‚¯ã—ãŸã‚«ãƒ¼ãƒ‰ã‚’PopUpã™ã‚‹ãŸã‚ã®controller===============*/
 public class CardPopupDisplayController : MonoBehaviour {
 
     /*===========Core===========*/
@@ -16,6 +17,7 @@ public class CardPopupDisplayController : MonoBehaviour {
     Vector2 startPos;
     Vector2 endPos;
 
+    /*========åˆæœŸè¨­å®š=========*/
     private void Start() {
 
         rect = selectedPlayCard.GetComponent<RectTransform>();
@@ -27,23 +29,24 @@ public class CardPopupDisplayController : MonoBehaviour {
         confirmCardPlay.SetActive(false);
     }
 
-    /*========CardPopupDisplayEvent‚ª”­¶‚µ‚½‚ç‹N“®‚·‚é==========*/
+    /*========CardPopupDisplayEventãŒç™ºç”Ÿã—ãŸã‚‰èµ·å‹•ã™ã‚‹==========*/
     public void CardPopupDisplay() {
 
-        //selectedPlayCard‚ÉCardData‚ÆImage‚ğ•Û‘¶‚·‚é
+        //selectedPlayCardã«CardDataã¨Imageã‚’ä¿å­˜ã™ã‚‹
         selectedPlayCard.sprite = mouseOnCardController.card.CardImage;
         selectedPlayCard.GetComponent<CardAttachedCardData>().cardData = mouseOnCardController.card;
 
-        //selectedPlayCard‚ğstartPos(‰æ–Ê«)‚©‚çendPos(‰æ–Ê’†‰›)‚ÉˆÚ“®‚³‚¹‚é
+        //selectedPlayCardã‚’startPos(ç”»é¢â†“)ã‹ã‚‰endPos(ç”»é¢ä¸­å¤®)ã«ç§»å‹•ã•ã›ã‚‹
         elapsed = 0f;
         StartCoroutine(CardGroupMove());
 
-        //mouseOnCardController“à‚ÌŒp³‚Ì‚½‚ß‚ÌCardData‚ğíœ‚·‚é
+        //mouseOnCardControllerå†…ã®ç¶™æ‰¿ã®ãŸã‚ã®CardDataã‚’å‰Šé™¤ã™ã‚‹
         mouseOnCardController.CardDataClear();
 
         confirmCardPlay.SetActive(true);
     }
 
+    /*=========æ‰€å®šã®ä½ç½®ã«æ¥ã‚‹ã¾ã§å‹•ã‹ã—ç¶šã‘ã‚‹=========*/
     private IEnumerator CardGroupMove() {
 
         while (elapsed < duration) {

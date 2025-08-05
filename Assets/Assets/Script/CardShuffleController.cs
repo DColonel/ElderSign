@@ -1,10 +1,11 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*========å±±æœ­ã‚’ã‚·ãƒ£ãƒƒãƒ•ãƒ«ã™ã‚‹ãŸã‚ã®script=========*/
 public class CardShuffleController : MonoBehaviour {
 
     /*===========Core==============*/
@@ -19,12 +20,12 @@ public class CardShuffleController : MonoBehaviour {
         CardShuffleEvent.Instance.TriggerDeckShuffled();
     }
 
-    /*============ResourcesƒtƒHƒ‹ƒ_‚Ì’†‚ÌCard‚ğæ“¾============*/
+    /*============Resourcesãƒ•ã‚©ãƒ«ãƒ€ã®ä¸­ã®Cardã‚’å–å¾—============*/
     void LoadAllCards() {
         deck = Resources.LoadAll<Card>("Card").ToList();
     }
 
-    /*=============DeckList‚Ì’†g‚ğƒVƒƒƒbƒtƒ‹===============*/
+    /*=============DeckListã®ä¸­èº«ã‚’ã‚·ãƒ£ãƒƒãƒ•ãƒ«===============*/
     void ShufflDeck() {
         for (int i = 0; i < deck.Count; i++) {
             var temp = deck[i];
