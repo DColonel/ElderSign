@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990fbe0658c206e42a4e50d262213683, type: 3}
   m_Name: CardBlue7
   m_EditorClassIdentifier: 
-  CardImage: {fileID: 21300000, guid: f9da225ce7d02124db468da496327c91, type: 3}
+  CardImage: {fileID: -8659971436437294112, guid: 868fd026e532afb47b8ab245937f2341, type: 3}

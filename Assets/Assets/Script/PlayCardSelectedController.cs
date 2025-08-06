@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-/*=============カードを選択した際の最終確認の選択肢を動かすためのScript============*/
+/*=============カードを選択した際の最終確認の選択肢を動かして、選択肢の結果移行するためのScript============*/
 public class PlayCardSelectedController : MonoBehaviour
 {
 
@@ -43,6 +43,11 @@ public class PlayCardSelectedController : MonoBehaviour
 
                 selectedArrow.SetActive(true);
                 selectedArrow.GetComponent<RectTransform>().anchoredPosition = new Vector2(260f, -75f);
+
+                //もしこの時にマウスをクリックしたらイベントを発火させてカード攻略に進む
+                if (Input.GetMouseButtonDown(0)) {
+                    YesConfirmEvent.Instance.TriggerYesConfirmed();
+                }
 
             }//いいえの上にマウスがある
             else if (results[0].gameObject == textNoBG) {
