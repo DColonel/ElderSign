@@ -8,6 +8,7 @@ using UnityEngine.UI;
 /*==========カードの真上にマウスが存在するとき、クリックした時それぞれの処理============*/
 public class MouseOnCardController : MonoBehaviour {
 
+    /*=============Core============*/
     [SerializeField] List<RectTransform> Card;
     [SerializeField] CardSelectArrowMoved arrowMoved;
     [SerializeField] HandCardsHideCardController handCardsHideCardController;

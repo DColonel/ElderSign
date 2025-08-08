@@ -5,6 +5,7 @@ using UnityEngine;
 public class YesConfirmListener : MonoBehaviour
 {
     //このイベントによって動かしたい挙動をSerializedFieldに登録する
+    [SerializeField] YesConfirmedAfterController yesConfirmAfterController;
 
     IEnumerator RegisterListener() {
         while (YesConfirmEvent.Instance == null) {
@@ -23,6 +24,6 @@ public class YesConfirmListener : MonoBehaviour
 
     //イベントが発火した時に、この中にある挙動が開始される
     void Handle() {
-
+        yesConfirmAfterController.PlayDiceSet();
     }
 }
