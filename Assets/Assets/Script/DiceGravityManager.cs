@@ -1,8 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*===========================*/
+/*==============3Dオブジェクトに働く重力の方向と強さを設定するための処理=============*/
 public class DiceGravityManager : MonoBehaviour {
 
     [SerializeField] Transform dicePoint;
@@ -17,8 +17,8 @@ public class DiceGravityManager : MonoBehaviour {
             Rigidbody rb = child.GetComponent<Rigidbody>();
 
             if (rb != null) {
-                rb.useGravity = false; // Unity�̏d�͖͂�����
-                rb.AddForce(customGravity, ForceMode.Acceleration); // ����d�͂�K�p
+                rb.useGravity = false; // Unityの重力は無効化
+                rb.AddForce(customGravity, ForceMode.Acceleration); // 自作重力を適用
             }
         }
     }

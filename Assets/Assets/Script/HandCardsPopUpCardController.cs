@@ -1,8 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Scripting;
 
+/*============出札をポップアップするための処理=============*/
 public class HandCardsPopUpCardController : MonoBehaviour {
 
     [SerializeField] RectTransform cardGroup;

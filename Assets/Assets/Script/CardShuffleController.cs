@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-/*========山札をシャッフルするためのscript=========*/
+/*========ゲーム開始時、カードを読み込み、山札をシャッフルするためのscript=========*/
 public class CardShuffleController : MonoBehaviour {
 
     /*===========Core==============*/

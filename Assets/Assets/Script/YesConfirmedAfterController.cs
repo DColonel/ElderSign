@@ -1,7 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*==========手札の中から選んだプレイカードを確定した時の処理==========*/
 public class YesConfirmedAfterController : MonoBehaviour
 {
 
