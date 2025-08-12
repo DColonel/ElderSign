@@ -2324,6 +2324,8 @@ GameObject:
   - component: {fileID: 673106802}
   - component: {fileID: 673106805}
   - component: {fileID: 673106804}
+  - component: {fileID: 673106807}
+  - component: {fileID: 673106806}
   m_Layer: 0
   m_Name: GameEvent
   m_TagString: Untagged
@@ -2445,6 +2447,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9523b4a3b3e710945befa469a3d78cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &673106806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673106795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b47c66055b609c4b87fa96fd2e76d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkDiceCondition: {fileID: 2044064419}
+--- !u!114 &673106807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673106795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f721d111301a1ea4e9ce9c9bfd604a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &734554290
@@ -5158,6 +5185,7 @@ GameObject:
   - component: {fileID: 2044064415}
   - component: {fileID: 2044064417}
   - component: {fileID: 2044064418}
+  - component: {fileID: 2044064419}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5385,7 +5413,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dicePoint: {fileID: 1964213107}
+  diceGroup: {fileID: 46576745}
   topFaceNames: []
+--- !u!114 &2044064419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044064404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1f2557dddf05143828c61c5cd4f562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DiceResultCollector: {fileID: 2044064418}
+  selectedPlayCard: {fileID: 1862190353}
 --- !u!1001 &2050220421
 PrefabInstance:
   m_ObjectHideFlags: 0

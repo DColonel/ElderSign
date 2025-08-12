@@ -11,4 +11,3 @@ public class Card : ScriptableObject {
     public List<SlotData> slot2;
     public List<SlotData> slot3;
 }
-
