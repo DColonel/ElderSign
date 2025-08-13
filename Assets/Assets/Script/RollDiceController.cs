@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -25,6 +26,9 @@ public class RollDiceController : MonoBehaviour {
     bool createDice;
     bool mouseOnBotton = false;
 
+    //DiceTopFaceCheckerにダイスの上面を記録許可を出すためのbool
+    public bool diceRollAllowedEvent = false;
+
     void Update(){
 
         //RayCast作成
@@ -36,6 +40,7 @@ public class RollDiceController : MonoBehaviour {
         pointerData.position = Input.mousePosition;
         raycaster.Raycast(pointerData, results);
 
+        //boolの中身の作成
         mouseOnBotton = results.Count > 0 && results[0].gameObject == playBotton;
 
         if (mouseOnBotton) {
@@ -50,10 +55,12 @@ public class RollDiceController : MonoBehaviour {
 
                 for (int i = dicePoint.childCount - 1; i >= 0; i--) {
                     RollDice(dicePoint.GetChild(i));
+                    
                 }
+                diceRollAllowedEvent = true;
             }
 
-        } else if (!mouseOnBotton) {
+        } else if (!mouseOnBotton && !diceRollAllowedEvent) {
 
             createDice = false;
             DestroyDice();
@@ -87,6 +94,7 @@ public class RollDiceController : MonoBehaviour {
         return pos;
     }
 
+    /*=========出現時のダイスの角度をランダム算出==========*/
     private Quaternion GetRandomRotation() {
         float x = Random.Range(0f, 360f);
         float y = Random.Range(0f, 360f);
@@ -103,6 +111,7 @@ public class RollDiceController : MonoBehaviour {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
+        //ダイスが動く方向
         Vector3 randomForce = new Vector3(
             Random.Range(-2f, 2f),
             Random.Range(-2f, 2f),
@@ -111,6 +120,7 @@ public class RollDiceController : MonoBehaviour {
 
         rb.AddForce(randomForce, ForceMode.Impulse);
 
+        //ダイスが回転する角度
         Vector3 randomTorque = new Vector3(
             Random.Range(-1f, 1f),
             Random.Range(-1f, 1f),
