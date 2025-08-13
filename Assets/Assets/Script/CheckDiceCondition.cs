@@ -10,7 +10,6 @@ public class CheckDiceCondition : MonoBehaviour {
     /*=========Core==========*/
     [SerializeField] DiceResultCollector DiceResultCollector;
     [SerializeField] CardAttachedCardData selectedPlayCard;
-    [SerializeField] PlayFailure playFailure;
 
     /*========確認開始========*/
     public void checkDice() {
@@ -28,15 +27,12 @@ public class CheckDiceCondition : MonoBehaviour {
 
         // ログ出力
         if (slot1Met || slot2Met || slot3Met) {
-
             Debug.Log($"結果: " +
                 $"{(slot1Met ? "スロット1〇" : "スロット1×")} " +
                 $"{(slot2Met ? "スロット2〇" : "スロット2×")} " +
                 $"{(slot3Met ? "スロット3〇" : "スロット3×")}");
         } else {
-
             Debug.Log("全部条件不一致×");
-            playFailure.OnPlayFailure();
         }
     }
 
