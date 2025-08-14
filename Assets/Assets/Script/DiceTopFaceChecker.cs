@@ -12,15 +12,15 @@ public class DiceTopFaceChecker : MonoBehaviour {
 
     float stopThreshold = 0.05f;
     float stopTimeRequired = 0.5f;
-    float stopTimer = 0f;
+    public float stopTimer = 0f;
 
-    List<float> velocityHistory = new List<float>();
-    List<float> angularVelocityHistory = new List<float>();
+    public List<float> velocityHistory = new List<float>();
+    public List<float> angularVelocityHistory = new List<float>();
 
     float checkDuration = 1f; // 1秒間履歴を取る想定
     int maxHistoryCount => Mathf.CeilToInt(checkDuration / Time.deltaTime);
 
-    bool hasStopped = false;
+    public bool hasStopped = false;
     RollDiceController diceRollController;
     DiceResultCollector diceResultCollector;
 

@@ -23,7 +23,7 @@ public class RollDiceController : MonoBehaviour {
     private List<RaycastResult> results = new List<RaycastResult>();
     float range = 2.0f;
 
-    bool createDice;
+    public bool createDice;
     bool mouseOnBotton = false;
 
     //DiceTopFaceCheckerにダイスの上面を記録許可を出すためのbool
@@ -49,6 +49,10 @@ public class RollDiceController : MonoBehaviour {
 
                 createDice = true;
                 SpawnDice();
+
+                for (int i = 0; i < dicePoint.childCount; i++) {
+                    ResetChecker(dicePoint.transform.GetChild(i).GetComponent<DiceTopFaceChecker>());
+                }
             }
 
             if (Input.GetMouseButton(0)) {
@@ -128,5 +132,13 @@ public class RollDiceController : MonoBehaviour {
         ) * 80f;//都度変更
 
         rb.AddTorque(randomTorque);
+    }
+
+    public void ResetChecker(DiceTopFaceChecker dice) {
+        dice.hasStopped = false;
+        dice.stopTimer = 0f;
+        dice.velocityHistory.Clear();
+        dice.angularVelocityHistory.Clear();
+        dice.topFaceName = null;
     }
 }
