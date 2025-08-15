@@ -7,10 +7,10 @@ public class DiceResultCollector : MonoBehaviour {
 
     [SerializeField] public GameObject dicePoint;
     [SerializeField] public GameObject diceGroup;
+    [SerializeField] int diceCount;
 
     public List<string> topFaceNames = new List<string>();
-    int diceCount;
-    bool CheckDice = false;
+    public bool CheckDice = false;
 
     public void Update() {
 
@@ -25,13 +25,14 @@ public class DiceResultCollector : MonoBehaviour {
         //ダイスの出目のまとめlistの中身の数がダイスの総数と合えばイベント発火
         if (topFaceNames.Count == diceCount && diceCount !=  0 && !CheckDice) {
 
-            CheckDiceConditionEvent.Instance.TriggerCheckDiced();
             CheckDice = true;
+            CheckDiceConditionEvent.Instance.TriggerCheckDiced();
         }
     }
 
     /*============複数のダイスの出目をキャッチする===========*/
     public void CollectDiceResults() {
+
         topFaceNames.Clear();
 
         for (int i = 0; i < diceCount; i++) {

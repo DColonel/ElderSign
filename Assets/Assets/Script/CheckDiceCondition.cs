@@ -10,20 +10,41 @@ public class CheckDiceCondition : MonoBehaviour {
     /*=========Core==========*/
     [SerializeField] DiceResultCollector DiceResultCollector;
     [SerializeField] CardAttachedCardData selectedPlayCard;
+    [SerializeField] PlayFailure playFailure;
+    [SerializeField] PlaySuccess playSuccess;
+
+    List<string> diceResults;
+    public bool slot1Met;
+    public bool slot2Met;
+    public bool slot3Met;
+
+    public List<string> slot1Required;
+    public List<string> slot2Required;
+    public List<string> slot3Required;
+
+    private void Start() {
+
+        diceResults = DiceResultCollector.topFaceNames;
+    }
 
     /*========確認開始========*/
     public void checkDice() {
 
+        diceResults = new List<string>(DiceResultCollector.topFaceNames);
+
+        slot1Met = false;
+        slot2Met = false;
+        slot3Met = false;
+
         var cardData = selectedPlayCard.GetComponent<CardAttachedCardData>().cardData;
-        var diceResults =  DiceResultCollector.topFaceNames;
 
-        var slot1Required = cardData.slot1.Select(s => s.requiredDice.ToString()).ToList();
-        var slot2Required = cardData.slot2.Select(s => s.requiredDice.ToString()).ToList();
-        var slot3Required = cardData.slot3.Select(s => s.requiredDice.ToString()).ToList();
+        slot1Required = cardData.slot1.Select(s => s.requiredDice.ToString()).ToList();
+        slot2Required = cardData.slot2.Select(s => s.requiredDice.ToString()).ToList();
+        slot3Required = cardData.slot3.Select(s => s.requiredDice.ToString()).ToList();
 
-        bool slot1Met = slot1Required != null && slot1Required.Count > 0 && CheckListSatisfied(diceResults, slot1Required);
-        bool slot2Met = slot2Required != null && slot2Required.Count > 0 && CheckListSatisfied(diceResults, slot2Required);
-        bool slot3Met = slot3Required != null && slot3Required.Count > 0 && CheckListSatisfied(diceResults, slot3Required);
+        slot1Met = slot1Required != null && slot1Required.Count > 0 && CheckListSatisfied(diceResults, slot1Required);
+        slot2Met = slot2Required != null && slot2Required.Count > 0 && CheckListSatisfied(diceResults, slot2Required);
+        slot3Met = slot3Required != null && slot3Required.Count > 0 && CheckListSatisfied(diceResults, slot3Required);
 
         // ログ出力
         if (slot1Met || slot2Met || slot3Met) {
@@ -31,8 +52,11 @@ public class CheckDiceCondition : MonoBehaviour {
                 $"{(slot1Met ? "スロット1〇" : "スロット1×")} " +
                 $"{(slot2Met ? "スロット2〇" : "スロット2×")} " +
                 $"{(slot3Met ? "スロット3〇" : "スロット3×")}");
+            playSuccess.DicePlacement();
+
         } else {
             Debug.Log("全部条件不一致×");
+            playFailure.OnPlayFailure();
         }
     }
 
