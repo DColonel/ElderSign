@@ -119,7 +119,7 @@ public class RollDiceController : MonoBehaviour {
         Vector3 randomForce = new Vector3(
             Random.Range(-2f, 2f),
             Random.Range(-2f, 2f),
-            Random.Range(-3f, -2f)
+            Random.Range(-5f, -4f)
             ) * 1.1f;//都度変更
 
         rb.AddForce(randomForce, ForceMode.Impulse);

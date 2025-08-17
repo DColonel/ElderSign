@@ -140,7 +140,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WhiteDiceAttack1_0: 8592614327112819551
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -140,7 +140,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BlueDiceSkull_0: -4402846251670020835
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

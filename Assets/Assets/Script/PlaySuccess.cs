@@ -1,45 +1,90 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
+/*============プレイの結果、成功した場合==========*/
 public class PlaySuccess : MonoBehaviour {
-
-    [SerializeField] private List<GameObject> slot1Objects;
-    [SerializeField] private List<GameObject> slot2Objects;
-    [SerializeField] private List<GameObject> slot3Objects;
+    [SerializeField] private Image slot1Image;
+    [SerializeField] private Image slot2Image;
+    [SerializeField] private Image slot3Image;
 
     [SerializeField] private CheckDiceCondition diceCondition;
     [SerializeField] private DiceResultCollector diceResults;
 
+    [SerializeField] private GraphicRaycaster raycaster;
+    [SerializeField] private EventSystem eventSystem;
+
+    [SerializeField] private DicePlacementController dicePlacementController;
+
+    private Coroutine slot1Coroutine;
+    private Coroutine slot2Coroutine;
+    private Coroutine slot3Coroutine;
+
     private bool waitingForClick = false;
-    private List<GameObject> activeHighlightedObjects = new List<GameObject>();
+    private List<Image> activeHighlightedImages = new List<Image>();
+
+    void Update() {
+
+        if (!waitingForClick) return;
+
+        if (Input.GetMouseButtonDown(0)) {
+            PointerEventData pointerData = new PointerEventData(eventSystem) {
+                position = Input.mousePosition
+            };
+
+            List<RaycastResult> results = new List<RaycastResult>();
+            raycaster.Raycast(pointerData, results);
+
+            foreach (var result in results) {
+                Image clickedImage = result.gameObject.GetComponent<Image>();
+                if (clickedImage != null && activeHighlightedImages.Contains(clickedImage)) {
+                    Debug.Log("Clicked on slot image: " + clickedImage.name);
+                    waitingForClick = false;
+
+                    if (clickedImage == slot1Image) {
+                        dicePlacementController.PlaceDiceOnSlot(1);
+                    }
+                    else if (clickedImage == slot2Image) {
+                        dicePlacementController.PlaceDiceOnSlot(2);
+                    }
+                    else if (clickedImage == slot3Image) {
+                        dicePlacementController.PlaceDiceOnSlot(3);
+                    }
+
+                    StopAllCoroutines();
+                    break;
+                }
+            }
+        }
+    }
 
     public void DicePlacement() {
 
-        activeHighlightedObjects.Clear();
+        StopAllCoroutines();
+        activeHighlightedImages.Clear();
 
-        // Slot1
         if (diceCondition.slot1Met && IsSlotSatisfied(diceCondition.slot1Required)) {
-            HighlightObjects(slot1Objects, true);
-            AddToActive(slot1Objects);
+            activeHighlightedImages.Add(slot1Image);
+            slot1Coroutine = StartCoroutine(BlinkImageAlpha(slot1Image));
         }
 
-        // Slot2
         if (diceCondition.slot2Met && IsSlotSatisfied(diceCondition.slot2Required)) {
-            HighlightObjects(slot2Objects, true);
-            AddToActive(slot2Objects);
+            activeHighlightedImages.Add(slot2Image);
+            slot2Coroutine = StartCoroutine(BlinkImageAlpha(slot2Image));
         }
 
-        // Slot3
         if (diceCondition.slot3Met && IsSlotSatisfied(diceCondition.slot3Required)) {
-            HighlightObjects(slot3Objects, true);
-            AddToActive(slot3Objects);
+            activeHighlightedImages.Add(slot3Image);
+            slot3Coroutine = StartCoroutine(BlinkImageAlpha(slot3Image));
         }
 
-        waitingForClick = activeHighlightedObjects.Count > 0;
+        waitingForClick = activeHighlightedImages.Count > 0;
     }
 
-    bool IsSlotSatisfied(List<string> requiredFaces) {
+    private bool IsSlotSatisfied(List<string> requiredFaces) {
+
         if (requiredFaces.Count > diceResults.topFaceNames.Count) return false;
 
         int matchCount = 0;
@@ -48,46 +93,24 @@ public class PlaySuccess : MonoBehaviour {
                 matchCount++;
             }
         }
-
         return matchCount == requiredFaces.Count;
     }
 
-    void HighlightObjects(List<GameObject> objects, bool enable) {
-        for (int i = 0; i < objects.Count; i++) {
-            Renderer rend = objects[i].GetComponent<Renderer>();
-            if (rend != null) {
-                if (enable) {
-                    rend.material.color = Color.yellow; // ���点��F
-                } else {
-                    rend.material.color = Color.white;  // ���̐F
-                }
-            }
-        }
-    }
+    private IEnumerator BlinkImageAlpha(Image image, float minAlpha = 0f, float maxAlpha = 0.4f, float interval = 1f) {
 
-    void AddToActive(List<GameObject> objects) {
-        for (int i = 0; i < objects.Count; i++) {
-            activeHighlightedObjects.Add(objects[i]);
-        }
-    }
+        if (image == null) yield break;
 
-    void Update() {
-        if (waitingForClick && Input.GetMouseButtonDown(0)) {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+        while (true) {
+            // 現在の色を取って編集する
+            var c = image.color;
+            c.a = maxAlpha;
+            image.color = c;
+            yield return new WaitForSeconds(interval);
 
-            if (Physics.Raycast(ray, out hit)) {
-                for (int i = 0; i < activeHighlightedObjects.Count; i++) {
-                    if (hit.collider.gameObject == activeHighlightedObjects[i]) {
-                        Debug.Log("Clicked on slot object: " + activeHighlightedObjects[i].name);
-                        waitingForClick = false;
-                        HighlightObjects(slot1Objects, false);
-                        HighlightObjects(slot2Objects, false);
-                        HighlightObjects(slot3Objects, false);
-                        break;
-                    }
-                }
-            }
+            c = image.color;
+            c.a = minAlpha;
+            image.color = c;
+            yield return new WaitForSeconds(interval);
         }
     }
 }

@@ -17,6 +17,7 @@ public class PlayFailure : MonoBehaviour {
     [SerializeField] RollDiceController rollDiceController;
     [SerializeField] HandCardsPopUpCardController handCardsPopUpCardController;
     [SerializeField] CardHideDisplayController cardHideDisplayController;
+    [SerializeField] DiceManager DiceManager;
 
     public void OnPlayFailure() {
 
@@ -57,6 +58,7 @@ public class PlayFailure : MonoBehaviour {
             }
 
             YesConfirmEvent.Instance.TriggerYesConfirmed();
+            diceManager.ResetTurnState();
         }
     }
 
@@ -64,9 +66,9 @@ public class PlayFailure : MonoBehaviour {
 
         gameObject.SetActive(true);
         yield return MoveToY(gameObject, - 2000f);              // 初期位置セット
-        yield return MoveToY(gameObject, 0f, 3f);              // 表示へ3秒
-        yield return new WaitForSeconds(2f);       // 待機2秒
-        yield return MoveToY(gameObject, 2000f, 3f);           // 退場へ3秒
+        yield return MoveToY(gameObject, 0f, 1f);              // 表示へ3秒
+        yield return new WaitForSeconds(3f);       // 待機2秒
+        yield return MoveToY(gameObject, 2000f, 1f);           // 退場へ3秒
         gameObject.SetActive(false);
     }
 

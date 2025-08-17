@@ -44,17 +44,25 @@ public class MouseOnCardController : MonoBehaviour {
 
             //UI上のヒット結果を格納
             List<RaycastResult> results = new List<RaycastResult>();
-            raycaster.Raycast(pointerData, results);
+            EventSystem.current.RaycastAll(pointerData, results);
+
+            foreach (var result in results) {
+                Debug.Log($"Hit: {result.gameObject.name}");
+            }
 
             for (int i = 0; i < results.Count; i++) {
 
                 GameObject hitObject = results[i].gameObject;
 
                 //ヒットしたオブジェクトの中にCardAttachedCardDataがあれば拾う
-                CardAttachedCardData attachedObject = hitObject.GetComponent<CardAttachedCardData>();
-                if (attachedObject != null && attachedObject.cardData != null) {
-                    card = attachedObject.cardData;
-                    break;
+                Transform t = hitObject.transform;
+                while (t != null) {
+                    var attachedObject = t.GetComponent<CardAttachedCardData>();
+                    if (attachedObject != null) {
+                        card = attachedObject.cardData;
+                        break;
+                    }
+                    t = t.parent;
                 }
             }
 

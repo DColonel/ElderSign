@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b546e0f3fe43ab54c92ff10e142caee6
+guid: 6cdbd7633aedf7a4098d0de5649e9827
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1483486069031989724
-    second: BlueDiceShield_0
+      213: -7278850559660889911
+    second: "nc158599_\u30A8\u30EB\u30C0\u30FC\u30B5\u30A4\u30F3_0"
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BlueDiceShield_0
+      name: "nc158599_\u30A8\u30EB\u30C0\u30FC\u30B5\u30A4\u30F3_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2048
-        height: 2048
+        width: 848
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cd174ed48b6669410800000000000000
-      internalID: 1483486069031989724
+      spriteID: 9c862422bf35cfa90800000000000000
+      internalID: -7278850559660889911
       vertices: []
       indices: 
       edges: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BlueDiceShield_0: 1483486069031989724
+      "nc158599_\u30A8\u30EB\u30C0\u30FC\u30B5\u30A4\u30F3_0": -7278850559660889911
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
