@@ -6355,6 +6355,7 @@ MonoBehaviour:
   diceResultCollector: {fileID: 2044064418}
   rollDiceController: {fileID: 2044064415}
   elderSignEffect: {fileID: 2044064424}
+  DiceManager: {fileID: 2044064416}
 --- !u!114 &2044064423
 MonoBehaviour:
   m_ObjectHideFlags: 0
