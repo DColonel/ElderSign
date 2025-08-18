@@ -10,6 +10,9 @@ public class YesConfirmedAfterController : MonoBehaviour
     [SerializeField] GameObject DiceGroup;
 
     public void PlayDiceSet() {
+
+
+
         confirmCardPlay.SetActive(false);
         DiceGroup.SetActive(true);
     }

@@ -117,8 +117,8 @@ public class RollDiceController : MonoBehaviour {
 
         //ダイスが動く方向
         Vector3 randomForce = new Vector3(
-            Random.Range(-2f, 2f),
-            Random.Range(-2f, 2f),
+            Random.Range(-3f, 3f),
+            Random.Range(-3f, 3f),
             Random.Range(-3f, -2f)
             ) * 1.1f;//都度変更
 
@@ -126,9 +126,9 @@ public class RollDiceController : MonoBehaviour {
 
         //ダイスが回転する角度
         Vector3 randomTorque = new Vector3(
-            Random.Range(-1f, 1f),
-            Random.Range(-1f, 1f),
-            Random.Range(-1f, 1f)
+            Random.Range(-2f, 2f),
+            Random.Range(-2f, 2f),
+            Random.Range(-2f, 2f)
         ) * 80f;//都度変更
 
         rb.AddTorque(randomTorque);

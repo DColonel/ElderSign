@@ -36,6 +36,8 @@ public class CardPopupDisplayController : MonoBehaviour {
         selectedPlayCard.sprite = mouseOnCardController.card.CardImage;
         selectedPlayCard.GetComponent<CardAttachedCardData>().cardData = mouseOnCardController.card;
 
+        selectedPlayCard.gameObject.SetActive(true);
+
         //selectedPlayCardをstartPos(画面↓)からendPos(画面中央)に移動させる
         elapsed = 0f;
         StartCoroutine(CardGroupMove());

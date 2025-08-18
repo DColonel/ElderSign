@@ -17,6 +17,7 @@ public class PlayFailure : MonoBehaviour {
     [SerializeField] RollDiceController rollDiceController;
     [SerializeField] HandCardsPopUpCardController handCardsPopUpCardController;
     [SerializeField] CardHideDisplayController cardHideDisplayController;
+    [SerializeField] DiceManager DiceManager;
 
     public void OnPlayFailure() {
 
@@ -30,7 +31,7 @@ public class PlayFailure : MonoBehaviour {
 
         Debug.Log(slotCountNum + "," + blueDiceNum);
 
-        //もし上回っていたら
+        //要求個数以上のダイスがなければ
         if (slotCountNum > blueDiceNum) {
 
             //初期化
@@ -41,15 +42,15 @@ public class PlayFailure : MonoBehaviour {
             }
 
             StartCoroutine(AnimateFailureImage(failureImage));
+            diceManager.ResetTurnState();
             cardHideDisplayController.CardHideDisplay();
             handCardsPopUpCardController.StartMyProcess();
 
-        //下回ってる場合リセットしてプレイ再開
+        //要求個数を満たせる数のダイスがあれば
         } else {
 
             StartCoroutine(AnimateFailureImage(lostDiceImage));
 
-            //初期化
             Reset(blueDiceNum);
 
             for (int i = dicePoint.transform.childCount - 1; i >= 0; i--) {
@@ -57,6 +58,7 @@ public class PlayFailure : MonoBehaviour {
             }
 
             YesConfirmEvent.Instance.TriggerYesConfirmed();
+            diceManager.ResetTurnState();
         }
     }
 

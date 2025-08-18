@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /*============プレイの結果、成功した場合==========*/
 public class PlaySuccess : MonoBehaviour {
+
     [SerializeField] private Image slot1Image;
     [SerializeField] private Image slot2Image;
     [SerializeField] private Image slot3Image;
@@ -16,7 +18,7 @@ public class PlaySuccess : MonoBehaviour {
     [SerializeField] private GraphicRaycaster raycaster;
     [SerializeField] private EventSystem eventSystem;
 
-    [SerializeField] private DicePlacementcontroller dicePlacementController;
+    [SerializeField] private DicePlacementController dicePlacementController;
 
     private Coroutine slot1Coroutine;
     private Coroutine slot2Coroutine;
@@ -43,7 +45,7 @@ public class PlaySuccess : MonoBehaviour {
                     Debug.Log("Clicked on slot image: " + clickedImage.name);
                     waitingForClick = false;
 
-                    /*if (clickedImage == slot1Image) {
+                    if (clickedImage == slot1Image) {
                         dicePlacementController.PlaceDiceOnSlot(1);
                     }
                     else if (clickedImage == slot2Image) {
@@ -51,13 +53,9 @@ public class PlaySuccess : MonoBehaviour {
                     }
                     else if (clickedImage == slot3Image) {
                         dicePlacementController.PlaceDiceOnSlot(3);
-                    }*/
+                    }
 
                     StopAllCoroutines();
-
-                    ResetImageAlpha(slot1Image);
-                    ResetImageAlpha(slot2Image);
-                    ResetImageAlpha(slot3Image);
                     break;
                 }
             }
@@ -69,82 +67,38 @@ public class PlaySuccess : MonoBehaviour {
         StopAllCoroutines();
         activeHighlightedImages.Clear();
 
-        if (diceCondition.slot1Met && IsSlotSatisfied(diceCondition.slot1Required)) {
+        if (diceCondition.slot1Met) {
             activeHighlightedImages.Add(slot1Image);
             slot1Coroutine = StartCoroutine(BlinkImageAlpha(slot1Image));
         }
-        else {
-            ResetImageAlpha(slot1Image);
-        }
 
-        if (diceCondition.slot2Met && IsSlotSatisfied(diceCondition.slot2Required)) {
+        if (diceCondition.slot2Met) {
             activeHighlightedImages.Add(slot2Image);
             slot2Coroutine = StartCoroutine(BlinkImageAlpha(slot2Image));
         }
-        else {
-            ResetImageAlpha(slot2Image);
-        }
 
-        if (diceCondition.slot3Met && IsSlotSatisfied(diceCondition.slot3Required)) {
+        if (diceCondition.slot3Met) {
             activeHighlightedImages.Add(slot3Image);
             slot3Coroutine = StartCoroutine(BlinkImageAlpha(slot3Image));
         }
-        else {
-            ResetImageAlpha(slot3Image);
-        }
 
         waitingForClick = activeHighlightedImages.Count > 0;
-    }
-
-    private bool IsSlotSatisfied(List<string> requiredFaces) {
-
-        if (requiredFaces.Count > diceResults.topFaceNames.Count) return false;
-
-        int matchCount = 0;
-        for (int i = 0; i < requiredFaces.Count; i++) {
-            if (diceResults.topFaceNames.Contains(requiredFaces[i])) {
-                matchCount++;
-            }
-        }
-        return matchCount == requiredFaces.Count;
-    }
-
-    private void ResetImageAlpha(Image image) {
-
-        if (image == null) return;
-
-        Color c = image.color;
-        c.a = 0f;
-        image.color = c;
-
-        if (image == slot1Image && slot1Coroutine != null) {
-            StopCoroutine(slot1Coroutine);
-            slot1Coroutine = null;
-        }
-        else if (image == slot2Image && slot2Coroutine != null) {
-            StopCoroutine(slot2Coroutine);
-            slot2Coroutine = null;
-        }
-        else if (image == slot3Image && slot3Coroutine != null) {
-            StopCoroutine(slot3Coroutine);
-            slot3Coroutine = null;
-        }
     }
 
     private IEnumerator BlinkImageAlpha(Image image, float minAlpha = 0f, float maxAlpha = 0.4f, float interval = 1f) {
 
         if (image == null) yield break;
 
-        Color baseColor = image.color;
         while (true) {
-            // アルファをmaxAlphaにして待機
-            baseColor.a = maxAlpha;
-            image.color = baseColor;
+            // 現在の色を取って編集する
+            var c = image.color;
+            c.a = maxAlpha;
+            image.color = c;
             yield return new WaitForSeconds(interval);
 
-            // アルファをminAlphaにして待機
-            baseColor.a = minAlpha;
-            image.color = baseColor;
+            c = image.color;
+            c.a = minAlpha;
+            image.color = c;
             yield return new WaitForSeconds(interval);
         }
     }
