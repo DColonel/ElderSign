@@ -58,7 +58,6 @@ public class PlayFailure : MonoBehaviour {
             }
 
             YesConfirmEvent.Instance.TriggerYesConfirmed();
-            diceManager.ResetTurnState();
         }
     }
 

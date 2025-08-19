@@ -92,6 +92,7 @@ public class RollDiceController : MonoBehaviour {
 
     /*===========ダイスの出現場所の決定===========*/
     private Vector3 GetRandomPositionInRange() {
+
         float x = Random.Range(-range, range);
         float y = Random.Range(-range, range);
         Vector3 pos = dicePoint.position + new Vector3(x, y, -3);

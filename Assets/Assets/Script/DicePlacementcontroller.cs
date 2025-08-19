@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +9,7 @@ public class DicePlacementController : MonoBehaviour {
     [SerializeField] Image slot2Image;
     [SerializeField] Image slot3Image;
 
-    [SerializeField] GameObject dicePoint; // ƒ_ƒCƒX‚Ìe
+    [SerializeField] GameObject dicePoint; // ãƒ€ã‚¤ã‚¹ã®è¦ª
     [SerializeField] CheckDiceCondition diceCondition;
     [SerializeField] DiceSlotMonitor diceSlotMonitor;
     [SerializeField] DiceManager diceManager;
@@ -19,7 +19,7 @@ public class DicePlacementController : MonoBehaviour {
     [SerializeField] ElderSignEffect elderSignEffect;
     [SerializeField] DiceManager DiceManager;
 
-    int countNum = 0; // íœ‚µ‚½ƒ_ƒCƒX‚Ì”‚ğƒJƒEƒ“ƒg
+    int countNum = 0; // å‰Šé™¤ã—ãŸãƒ€ã‚¤ã‚¹ã®æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
     private Color highlightColor = new Color(0f, 1f, 1f, 0.78f);
 
     public void PlaceDiceOnSlot(int slotIndex) {
@@ -44,16 +44,16 @@ public class DicePlacementController : MonoBehaviour {
 
         if (requiredFaces == null || targetImage == null) return;
 
-        // slot‚ÌF•ÏX
+        // slotã®è‰²å¤‰æ›´
         targetImage.color = highlightColor;
 
-        // DicePoint“à‚Ìƒ_ƒCƒX‚ğƒŠƒXƒg‰»
+        // DicePointå†…ã®ãƒ€ã‚¤ã‚¹ã‚’ãƒªã‚¹ãƒˆåŒ–
         List<Transform> diceChildren = new List<Transform>();
         for (int i = 0; i < dicePoint.transform.childCount; i++) {
             diceChildren.Add(dicePoint.transform.GetChild(i));
         }
 
-        // •K—v‚È”‚¾‚¯íœ‚µ‚Ä‚¢‚­
+        // å¿…è¦ãªæ•°ã ã‘å‰Šé™¤ã—ã¦ã„ã
         foreach (string reqRaw in requiredFaces) {
             string req = (reqRaw ?? "").Trim().ToLowerInvariant();
             bool found = false;
@@ -79,11 +79,11 @@ public class DicePlacementController : MonoBehaviour {
                 }
 
                 if (match) {
-                    Destroy(dice.gameObject); // DicePoint‚©‚çíœ
-                    diceChildren.RemoveAt(d); // ƒŠƒXƒg‚©‚ç‚àíœ
-                    countNum++; // ƒJƒEƒ“ƒg‚ğ1‘‚â‚·
+                    Destroy(dice.gameObject); // DicePointã‹ã‚‰å‰Šé™¤
+                    diceChildren.RemoveAt(d); // ãƒªã‚¹ãƒˆã‹ã‚‰ã‚‚å‰Šé™¤
+                    countNum++; // ã‚«ã‚¦ãƒ³ãƒˆã‚’1å¢—ã‚„ã™
                     found = true;
-                    break; // Ÿ‚Ìreq‚Ö
+                    break; // æ¬¡ã®reqã¸
                 }
             }
 
@@ -92,10 +92,10 @@ public class DicePlacementController : MonoBehaviour {
             }
         }
 
-        // ‚±‚±‚ÅŠY“–ƒXƒƒbƒg‚ğu’B¬Ï‚İv‚É‚·‚é
+        // ã“ã“ã§è©²å½“ã‚¹ãƒ­ãƒƒãƒˆã‚’ã€Œé”æˆæ¸ˆã¿ã€ã«ã™ã‚‹
         diceSlotMonitor.MarkSlotAsCompleted(slotIndex);
 
-        //’B¬‚Ìˆ—
+        //é”æˆæ™‚ã®å‡¦ç†
         if (diceSlotMonitor.AreAllSlotsSatisfied()) {
 
             diceResultCollector.topFaceNames.Clear();
@@ -110,7 +110,7 @@ public class DicePlacementController : MonoBehaviour {
             elderSignEffect.PlayEffect();
             diceManager.ResetTurnState();
 
-            //–¢’B¬‚Ìˆ—
+            //æœªé”æˆæ™‚ã®å‡¦ç†
         }
         else {
 
