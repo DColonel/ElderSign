@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /*============プレイの結果、成功した場合==========*/
 public class PlaySuccess : MonoBehaviour {
+
     [SerializeField] private Image slot1Image;
     [SerializeField] private Image slot2Image;
     [SerializeField] private Image slot3Image;
@@ -65,35 +67,22 @@ public class PlaySuccess : MonoBehaviour {
         StopAllCoroutines();
         activeHighlightedImages.Clear();
 
-        if (diceCondition.slot1Met && IsSlotSatisfied(diceCondition.slot1Required)) {
+        if (diceCondition.slot1Met) {
             activeHighlightedImages.Add(slot1Image);
             slot1Coroutine = StartCoroutine(BlinkImageAlpha(slot1Image));
         }
 
-        if (diceCondition.slot2Met && IsSlotSatisfied(diceCondition.slot2Required)) {
+        if (diceCondition.slot2Met) {
             activeHighlightedImages.Add(slot2Image);
             slot2Coroutine = StartCoroutine(BlinkImageAlpha(slot2Image));
         }
 
-        if (diceCondition.slot3Met && IsSlotSatisfied(diceCondition.slot3Required)) {
+        if (diceCondition.slot3Met) {
             activeHighlightedImages.Add(slot3Image);
             slot3Coroutine = StartCoroutine(BlinkImageAlpha(slot3Image));
         }
 
         waitingForClick = activeHighlightedImages.Count > 0;
-    }
-
-    private bool IsSlotSatisfied(List<string> requiredFaces) {
-
-        if (requiredFaces.Count > diceResults.topFaceNames.Count) return false;
-
-        int matchCount = 0;
-        for (int i = 0; i < requiredFaces.Count; i++) {
-            if (diceResults.topFaceNames.Contains(requiredFaces[i])) {
-                matchCount++;
-            }
-        }
-        return matchCount == requiredFaces.Count;
     }
 
     private IEnumerator BlinkImageAlpha(Image image, float minAlpha = 0f, float maxAlpha = 0.4f, float interval = 1f) {

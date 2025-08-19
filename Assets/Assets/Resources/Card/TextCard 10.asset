@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6b9c8a7bf0df0248a9fa4c62d10b81a, type: 3}
-  m_Name: TextCard 2
+  m_Name: TextCard 10
   m_EditorClassIdentifier: 
-  CardImage: {fileID: 5313656779412777054, guid: 14880d236c9ccac4b8de14919335659e, type: 3}
+  CardImage: {fileID: 6749776845546158643, guid: e45c1ab7128d52848b954930097f2a54, type: 3}
   slot1:
   - anchor: 0
     requiredDice: 4
   - anchor: 1
     requiredDice: 4
   - anchor: 2
-    requiredDice: 0
+    requiredDice: 3
+  - anchor: 3
+    requiredDice: 5
   slot2: []
   slot3: []

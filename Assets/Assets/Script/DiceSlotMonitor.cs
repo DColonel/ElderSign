@@ -6,46 +6,59 @@ public class DiceSlotMonitor : MonoBehaviour {
 
     [SerializeField] private CheckDiceCondition diceCondition;
     [SerializeField] private DiceResultCollector diceResults;
+    [SerializeField] GameObject selectedPlayCard;
+
+    bool slot1Satisfied = false;
+    bool slot2Satisfied = false;
+    bool slot3Satisfied = false;
+
+    Card card;
 
     //全ての条件付きスロットが埋まっているかどうかを返す
     public bool AreAllSlotsSatisfied() {
-        if (!IsSlotSatisfied(diceCondition.slot1Required)) return false;
-        if (!IsSlotSatisfied(diceCondition.slot2Required)) return false;
-        if (!IsSlotSatisfied(diceCondition.slot3Required)) return false;
 
-        return true;
-    }
+        card = selectedPlayCard.GetComponent<CardAttachedCardData>().cardData;
 
-    //あるスロットが必要条件を満たしているかを判定
-    //nullや空リストなら無視してtrueを返す
-    private bool IsSlotSatisfied(List<string> requiredFaces) {
-        if (requiredFaces == null || requiredFaces.Count == 0) return true;
-
-        int matchCount = 0;
-        foreach (var face in requiredFaces) {
-            if (diceResults.topFaceNames.Contains(face)) {
-                matchCount++;
-            }
+        // 各スロットの達成状態をチェック
+        if (!slot1Satisfied && card.slot1.Count > 0) {
+            return false;  // 1つでも達成していない場合は即座にfalseを返す
         }
 
-        return matchCount == requiredFaces.Count;
+        if (!slot2Satisfied && card.slot2.Count > 0) {
+            return false;  // 2つ目もチェックして、達成していなければfalse
+        }
+
+        if (!slot3Satisfied && card.slot3.Count > 0) {
+            return false;  // 3つ目も同様
+        }
+
+        // すべて達成していればtrueを返す
+        return true;
     }
 
     //slotIndexに応じて達成フラグを立てる
     public void MarkSlotAsCompleted(int slotIndex) {
+
         switch (slotIndex) {
             case 1:
-                diceCondition.slot1Met = true;
+                slot1Satisfied = true;
                 break;
             case 2:
-                diceCondition.slot2Met = true;
+                slot2Satisfied = true;
                 break;
             case 3:
-                diceCondition.slot3Met = true;
+                slot3Satisfied = true;
                 break;
             default:
                 Debug.LogWarning($"Invalid slotIndex {slotIndex} passed to MarkSlotAsCompleted.");
                 break;
         }
+    }
+
+    public void Reset() {
+        
+        slot1Satisfied = false;
+        slot2Satisfied = false;
+        slot3Satisfied = false;
     }
 }

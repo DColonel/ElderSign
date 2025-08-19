@@ -92,6 +92,7 @@ public class RollDiceController : MonoBehaviour {
 
     /*===========ダイスの出現場所の決定===========*/
     private Vector3 GetRandomPositionInRange() {
+
         float x = Random.Range(-range, range);
         float y = Random.Range(-range, range);
         Vector3 pos = dicePoint.position + new Vector3(x, y, -3);
@@ -117,18 +118,18 @@ public class RollDiceController : MonoBehaviour {
 
         //ダイスが動く方向
         Vector3 randomForce = new Vector3(
-            Random.Range(-2f, 2f),
-            Random.Range(-2f, 2f),
-            Random.Range(-5f, -4f)
+            Random.Range(-3f, 3f),
+            Random.Range(-3f, 3f),
+            Random.Range(-3f, -2f)
             ) * 1.1f;//都度変更
 
         rb.AddForce(randomForce, ForceMode.Impulse);
 
         //ダイスが回転する角度
         Vector3 randomTorque = new Vector3(
-            Random.Range(-1f, 1f),
-            Random.Range(-1f, 1f),
-            Random.Range(-1f, 1f)
+            Random.Range(-2f, 2f),
+            Random.Range(-2f, 2f),
+            Random.Range(-2f, 2f)
         ) * 80f;//都度変更
 
         rb.AddTorque(randomTorque);
