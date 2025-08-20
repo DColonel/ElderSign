@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardImage: {fileID: 3525387960924034392, guid: 65ca28e0346d3bc4db4cb7a0b6ba414c, type: 3}
   slot1:
-  - anchor: 0
-    requiredDice: 1
   - anchor: 1
     requiredDice: 2
+  - anchor: 0
+    requiredDice: 1
   - anchor: 2
     requiredDice: 3
   - anchor: 3
